@@ -1,0 +1,24 @@
+{
+  "group": "AND",
+  "conditions": [
+    {
+      "group": "OR",
+      "conditions": [
+        {
+          "term": "usa",
+          "field": "country",
+          "fuzzy": false
+        },
+        {
+          "term": "nl",
+          "field": "country",
+          "fuzzy": false
+        }
+      ]
+    },
+    {
+      "term": [600000, "-"],
+      "field": "population"
+    }
+  ]
+}

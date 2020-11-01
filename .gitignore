@@ -1,0 +1,6 @@
+.idea
+old
+venv
+index/*
+data/infobox.txt
+data/query.json

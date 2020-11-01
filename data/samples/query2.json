@@ -1,0 +1,15 @@
+{
+  "group": "AND",
+  "conditions": [
+    {
+      "term": "usa",
+      "field": "country",
+      "fuzzy": false
+    },
+    {
+      "term": "cz",
+      "field": "country",
+      "fuzzy": false
+    }
+  ]
+}
