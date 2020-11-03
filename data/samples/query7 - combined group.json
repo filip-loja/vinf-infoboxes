@@ -6,13 +6,11 @@
       "conditions": [
         {
           "term": "usa",
-          "field": "country",
-          "fuzzy": false
+          "field": "country"
         },
         {
           "term": "nl",
-          "field": "country",
-          "fuzzy": false
+          "field": "country"
         }
       ]
     },

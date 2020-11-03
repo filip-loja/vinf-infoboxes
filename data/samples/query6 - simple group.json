@@ -1,0 +1,13 @@
+{
+  "group": "OR",
+  "conditions": [
+    {
+      "term": "hu",
+      "field": "country"
+    },
+    {
+      "term": "cz",
+      "field": "country"
+    }
+  ]
+}

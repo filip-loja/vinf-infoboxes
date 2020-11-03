@@ -1,7 +1,4 @@
 {
-  "term": "netherlands",
-  "field": "country",
-  "prefix": false,
-  "fuzzy": false,
-  "single": false
+  "term": "czech",
+  "field": "country"
 }
