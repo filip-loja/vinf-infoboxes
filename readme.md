@@ -38,7 +38,16 @@ python store search 'C:\Development\vinf\project\config.json'
 * `maxHits` - určuje maximálny počet výsledkov vyhľadávacieho dopytu
 
 ## Vyhľadávanie
-Vyhľadávanie sa vykonáva na základe dopytov, ktoré sú definované v JSON formáte. Dopyty je možné zapisovať viacerými spôsosobmi:
+Vyhľadávanie sa vykonáva na základe dopytov, ktoré sú definované v JSON formáte. Dopyty je možné zapisovať viacerými spôsosobmi. Vyhľadávať je možné buď fulltextovo alebo v nasledujúcich poliach:
+* `id`
+* `name`
+* `type`
+* `country`
+* `population`
+* `population_density`
+* `area_km2`
+* `elevation_m`
+* `leader`
 
 ### Základné vyhľadávanie
 Hľadaný výraz (`term`) sa musí v zadanom poli (`field`) nachádzať celý.
@@ -85,11 +94,11 @@ Dáta v poliach, ktoré obsahujú číselné údaje je možné vyhľadávať aj 
 * `"term": [300, "-"]` --- *<300, INF)*
 
 **Číselné polia:**
-* id
-* population
-* population_density
-* area_km2
-* elevation_m
+* `id`
+* `population`
+* `population_density`
+* `area_km2`
+* `elevation_m`
 
 ### Fulltextové vyhľadávanie
 Textové vyhľadávanie cez všetky polia
