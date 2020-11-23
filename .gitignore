@@ -3,4 +3,5 @@ old
 venv
 index/*
 data/infobox.txt
-data/query.json
+query.json
+result.json

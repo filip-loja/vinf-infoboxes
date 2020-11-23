@@ -12,9 +12,13 @@ class Printer:
     def __init__(self, searcher):
         self.printOutputHeader()
         i = 1
-        for doc in searcher.get():
-            self.printDoc(doc, i)
-            i += 1
+        if len(searcher.get()) == 0:
+            print('Nothing found :(')
+        else:
+            for doc in searcher.get():
+                self.printDoc(doc, i)
+                i += 1
+        print('')
 
 
     def printOutputHeader(self):

@@ -1,0 +1,7 @@
+{
+  "sourceFile": "./data/parsed.txt",
+  "indexPath": "./index/",
+  "queryFile": "./query.json",
+  "outputFile": "./result.json",
+  "printOutput": true
+}

@@ -8,23 +8,14 @@ from org.apache.lucene.search import PhraseQuery, FuzzyQuery, PrefixQuery, Boole
 from org.apache.lucene.index import Term
 from org.apache.lucene.search.spans import SpanNearQuery, SpanMultiTermQueryWrapper
 from org.apache.lucene.document import IntPoint, DoublePoint
+from src.indexFields import fieldTypes
 
 class Query:
     rawQuery = None
     parsedQuery = None
     analyzer = None
 
-    fieldTypes = {
-        'id': 'IntPoint',
-        'name': 'TextField',
-        'type': 'TextField',
-        'country': 'TextField',
-        'population': 'IntPoint',
-        'population_density': 'DoublePoint',
-        'area_km2': 'DoublePoint',
-        'elevation_m': 'DoublePoint',
-        'leader': 'TextField'
-    }
+    fieldTypes = fieldTypes
 
 
     def __init__(self, queryFile):

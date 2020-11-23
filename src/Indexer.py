@@ -1,14 +1,16 @@
-import datetime
+import time
 import json
-import os
 import glob
+import os
 
 from java.nio.file import Paths
 from org.apache.lucene.store import SimpleFSDirectory
 from org.apache.lucene.analysis.standard import StandardAnalyzer
 from org.apache.lucene.index import IndexOptions, IndexWriter, IndexWriterConfig
 from org.apache.lucene.document import Document, Field, FieldType, IntPoint, DoublePoint
+
 from src.indexFields import fieldTypes
+from src.timer import printExecutionTime
 
 class Indexer:
     filePath = None
@@ -18,6 +20,7 @@ class Indexer:
     loaderRange = 0
     currentLoader = 0
     processedLineCount = 0
+    lastProgress = -1
 
     writer = None
     basicField = None
@@ -26,7 +29,7 @@ class Indexer:
     includedFields = []
 
     def __init__(self, inputFile, indexFolder):
-        startTime = datetime.datetime.now()
+        startTime = time.time()
         print('Indexing started')
 
         self.basicField = FieldType()
@@ -37,16 +40,14 @@ class Indexer:
         self.filePath = inputFile
         self.indexPath = indexFolder
 
+        self.lineCount = self.loadLineCount()
         self.purgeIndexFolder()
         self.initIndexWriter()
         self.readFile()
         self.writer.close()
 
-        endTime = datetime.datetime.now()
-        secondsFloat = (endTime - startTime).total_seconds()
-        seconds = int(secondsFloat)
-        milliseconds = round((secondsFloat - seconds) * 1000, 4)
-        print('\nTotal execution time {}s {}ms'.format(seconds, milliseconds))
+        print('\nIndexing finished')
+        printExecutionTime(startTime)
 
 
     def purgeIndexFolder(self):
@@ -54,6 +55,22 @@ class Indexer:
         for f in files:
             os.remove(f)
         print('Index directory purged')
+
+
+    def loadLineCount(self):
+        try:
+            count = 0
+            file = open(self.filePath, 'r')
+            with file:
+                line = file.readline()
+                count += 1
+                while line:
+                    line = file.readline()
+                    count += 1
+            file.close()
+            return count
+        except:
+            return None
 
 
     def initIndexWriter(self):
@@ -66,31 +83,26 @@ class Indexer:
         try:
             file = open(self.filePath, 'r')
             with file:
-                line = file.readline().strip()
-                self.loadLineCount(int(line))
-
                 self.processedLineCount = 1
                 line = file.readline().strip()
                 while line:
                     self.processLine(line)
                     self.processedLineCount += 1
-                    self.showLoader()
+                    self.showProgress()
                     line = file.readline().strip()
             file.close()
         except IOError:
             print('File ' + self.filePath + ' could not be opened!')
 
 
-    def loadLineCount(self, lineCount):
-        self.lineCount = lineCount
-        self.loaderRange = round(lineCount / 20)
+    def showProgress(self):
+        if self.lineCount is None:
+            return
 
-
-    def showLoader(self):
-        l = round(self.processedLineCount / self.loaderRange)
-        if l > self.currentLoader:
-            self.currentLoader = l
-            print('\rGenerating index  ...  %d%%' % (self.currentLoader * 5), end='')
+        progress = int(self.processedLineCount / self.lineCount * 100)
+        if progress > self.lastProgress:
+            self.lastProgress = progress
+            print('\rGenerating index  ...  %d%%' % self.lastProgress, end='')
 
 
     def processLine(self, line):

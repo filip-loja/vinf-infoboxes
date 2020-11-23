@@ -1,21 +1,25 @@
 import lucene
+import json
 
-from src.CmdHandler import CmdHandler
+from src.cmdHelper import parseCmd
 from src.Indexer import Indexer
 from src.Searcher import Searcher
 from src.Query import Query
 from src.Printer import Printer
 
 lucene.initVM()
-moduleName = CmdHandler().getModule()
+config = parseCmd()
 
-indexFolder = './index/'
-indexInputFile = './data/infobox.txt'
-queryInputFile = './data/query.json'
-
-if moduleName == 'indexer':
-    Indexer(indexInputFile, indexFolder)
-elif moduleName == 'searcher':
-    query = Query(queryInputFile)
-    searcher = Searcher(indexFolder, query)
-    Printer(searcher)
+if config['moduleName'] == 'indexer':
+    Indexer(config['sourceFile'], config['indexPath'])
+elif config['moduleName'] == 'searcher':
+    query = Query(config['queryFile'])
+    searcher = Searcher(config['indexPath'], query)
+    if config.get('printOutput', False):
+        Printer(searcher)
+    if config.get('outputFile', None) is not None:
+        with open(config['outputFile'], 'w+') as outputFile:
+            json.dump(searcher.get(), outputFile, indent=2)
+            print('Search results saved to "' + config['outputFile'] +'" file.')
+    else:
+        print('Output file not specified! Search results were not saved.')
