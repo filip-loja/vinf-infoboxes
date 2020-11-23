@@ -14,10 +14,10 @@ if config['moduleName'] == 'index':
     Indexer(config['sourceFile'], config['indexPath'])
 elif config['moduleName'] == 'search':
     query = Query(config['queryFile'])
-    searcher = Searcher(config['indexPath'], query)
-    if config.get('printOutput', False):
+    searcher = Searcher(config['indexPath'], query, config['maxHits'])
+    if config['printOutput']:
         Printer(searcher)
-    if config.get('outputFile', None) is not None:
+    if config['outputFile'] is not None:
         with open(config['outputFile'], 'w+') as outputFile:
             json.dump(searcher.get(), outputFile, indent=2)
             print('Search results saved to "' + config['outputFile'] +'" file.')

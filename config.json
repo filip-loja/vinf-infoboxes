@@ -3,5 +3,6 @@
   "indexPath": "./index/",
   "queryFile": "./query.json",
   "outputFile": "./result.json",
-  "printOutput": true
+  "printOutput": true,
+  "maxHits": 1000
 }

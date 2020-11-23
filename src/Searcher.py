@@ -15,11 +15,15 @@ class Searcher:
     analyzer = None
     query = None
     results = []
+    maxHits = 1000
 
 
-    def __init__(self, indexPath, query):
+    def __init__(self, indexPath, query, maxHits):
         self.indexPath = indexPath
         self.query = query.get()
+
+        if maxHits is not None:
+            self.maxHits = maxHits
 
         indexDirectory = SimpleFSDirectory(Paths.get(self.indexPath))
         self.reader = DirectoryReader.open(indexDirectory)
@@ -35,7 +39,7 @@ class Searcher:
 
 
     def search(self):
-        hits = self.indexSearcher.search(self.query, 1000)
+        hits = self.indexSearcher.search(self.query, self.maxHits)
         for hit in hits.scoreDocs:
             doc = self.indexSearcher.doc(hit.doc)
             self.processDocument(doc)

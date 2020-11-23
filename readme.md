@@ -1,12 +1,12 @@
 
-# DB modul
+# Store modul
 * úlohou tohto modulu je indexovanie už spracovaných dát z infoboxov anglickej wikipédie
 * následne umožní nad dátami vykonávať vyhľadávanie
 * indexovanie aj vyhľadávanie je implementované prostredníctvom PyLucene
 
 ## Ovládanie
 ```
-python db <module> [<config-file>]
+python store <module> [<config-file>]
 ```
 * `<module>` - názov modulu, ktorý sa má vykonať
     * `index` - spustí sa indexovanie vyparsovaných dát
@@ -15,8 +15,8 @@ python db <module> [<config-file>]
 
 #### Príklad
 ```
-python db index
-python db search 'C:\Development\vinf\project\config.json'
+python store index
+python store search 'C:\Development\vinf\project\config.json'
 ```
 
 #### Konfiguračný súbor
@@ -26,14 +26,16 @@ python db search 'C:\Development\vinf\project\config.json'
   "indexPath": "./index/",
   "queryFile": "./query.json",
   "outputFile": "./result.json",
-  "printOutput": true
+  "printOutput": true,
+  "maxHits": 1000
 }
 ```
 * `sourceFile` - textový súbor obsahujúci dáta, ktoré chceme indexovať, každý riadok musí byť validný JSON objekt
 * `indexPath` - cesta k priečinku, kam si PyLucene ukladá svoj index, obsah tohto priečinka je vždy vymazaný pred spustením indexovania
 * `queryFile` - cesta k JSON súboru, ktorý obsahuje definíciu dopytu nad dátami
 * `outputFile` - cesta k JSON súboru, do ktorého sa uložia výsledky vyhľadávania na zákalde dopytu, ktorý je uložený v `queryFile`, pokiaľ tento parameter v súbore prítomný nebude, výsledky vyhľadávania sa neuložia nikam
-* `printOutput` - boolovsky prepínač; ak má hodnotu `true`, výsledok dopytu zo súboru `queryFile` sa vypíše aj do konzoly; predvolenou hodnotou je `false`
+* `printOutput` - boolovsky prepínač; ak má hodnotu `true`, výsledok dopytu zo súboru `queryFile` sa vypíše aj do konzoly; predvolenou hodnotou je `true`
+* `maxHits` - určuje maximálny počet výsledkov vyhľadávacieho dopytu
 
 ## Vyhľadávanie
 Vyhľadávanie sa vykonáva na základe dopytov, ktoré sú definované v JSON formáte. Dopyty je možné zapisovať viacerými spôsosobmi:

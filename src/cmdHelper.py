@@ -34,6 +34,10 @@ def parseCmd():
     if config.get('queryFile') is None:
         raise Exception('Path to query file is not set!')
 
+    config['outputFile'] = config.get('outputFile', None)
+    config['printOutput'] = config.get('outputFile', True)
+    config['maxHits'] = config.get('maxHits', 1000)
+
     config['moduleName'] = moduleName
 
     return config
