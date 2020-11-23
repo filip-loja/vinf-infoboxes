@@ -3,7 +3,7 @@ import os
 import sys
 import json
 
-modules = ('indexer', 'searcher')
+modules = ('index', 'search')
 
 
 def getCmdArg(index, default):

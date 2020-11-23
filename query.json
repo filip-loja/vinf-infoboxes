@@ -1,5 +1,4 @@
 {
-  "term": "rotedam",
-  "field": "name",
-  "fuzzy": true
+  "term": "czech",
+  "field": "country"
 }

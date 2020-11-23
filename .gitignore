@@ -2,6 +2,6 @@
 old
 venv
 index/*
-data/infobox.txt
 query.json
 result.json
+source.txt

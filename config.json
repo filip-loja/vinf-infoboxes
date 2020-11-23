@@ -1,5 +1,5 @@
 {
-  "sourceFile": "./data/parsed.txt",
+  "sourceFile": "./source.txt",
   "indexPath": "./index/",
   "queryFile": "./query.json",
   "outputFile": "./result.json",

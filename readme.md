@@ -1,28 +1,28 @@
 
-# Lucene modul
+# DB modul
 * úlohou tohto modulu je indexovanie už spracovaných dát z infoboxov anglickej wikipédie
 * následne umožní nad dátami vykonávať vyhľadávanie
 * indexovanie aj vyhľadávanie je implementované prostredníctvom PyLucene
 
 ## Ovládanie
 ```
-python cmd <module> [<config-file>]
+python db <module> [<config-file>]
 ```
 * `<module>` - názov modulu, ktorý sa má vykonať
-    * `indexer` - spustí sa indexovanie vyparsovaných dát
-    * `searcher` - spustí sa vyhľadávanie nad zaindexovanými dátami
+    * `index` - spustí sa indexovanie vyparsovaných dát
+    * `search` - spustí sa vyhľadávanie nad zaindexovanými dátami
 * `<config-file>` - cesta ku konfiguračnému JSON súboru (ak nie je zadaná, použije sa súbor `/config.json`)
 
 #### Príklad
 ```
-python cmd indexer
-python cmd searcher 'C:\Development\vinf\project\config.json'
+python db index
+python db search 'C:\Development\vinf\project\config.json'
 ```
 
 #### Konfiguračný súbor
 ```
 {
-  "sourceFile": "./data/parsed.txt",
+  "sourceFile": "./source.txt",
   "indexPath": "./index/",
   "queryFile": "./query.json",
   "outputFile": "./result.json",
@@ -109,6 +109,7 @@ Všetky vyššie uvedené typy dopytov je možné navzájom kombinovať prostred
 **Typy skupín**
 * `OR` - aspoň jeden z dopytov musí byť nájdený
 * `AND` - všetky dopyty musia byť nájdené
+
 Skupiny je možné do seba rekurzívne vnárať:
 ```
 {

@@ -10,9 +10,9 @@ from src.Printer import Printer
 lucene.initVM()
 config = parseCmd()
 
-if config['moduleName'] == 'indexer':
+if config['moduleName'] == 'index':
     Indexer(config['sourceFile'], config['indexPath'])
-elif config['moduleName'] == 'searcher':
+elif config['moduleName'] == 'search':
     query = Query(config['queryFile'])
     searcher = Searcher(config['indexPath'], query)
     if config.get('printOutput', False):
