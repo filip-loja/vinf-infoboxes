@@ -40,7 +40,7 @@ python store search 'C:\Development\vinf\project\config.json'
 ## Vyhľadávanie
 Vyhľadávanie sa vykonáva na základe dopytov, ktoré sú definované v JSON formáte. Dopyty je možné zapisovať viacerými spôsosobmi:
 
-#### Základné vyhľadávanie
+### Základné vyhľadávanie
 Hľadaný výraz (`term`) sa musí v zadanom poli (`field`) nachádzať celý.
 ```
 {
@@ -50,7 +50,7 @@ Hľadaný výraz (`term`) sa musí v zadanom poli (`field`) nachádzať celý.
 
 ```
 
-#### Prefixové vyhľadávanie
+### Prefixové vyhľadávanie
 Obsah zadaného poľa (`field`) musí začínať hľadaným výrazom (`term`).
 ```
 {
@@ -60,7 +60,7 @@ Obsah zadaného poľa (`field`) musí začínať hľadaným výrazom (`term`).
 }
 ```
 
-#### Fuzzy vyhľadávanie
+### Fuzzy vyhľadávanie
 Hľadaný výraz (`term`) môže obsahovať preklep.
 ```
 {
@@ -71,7 +71,7 @@ Hľadaný výraz (`term`) môže obsahovať preklep.
 
 ```
 
-#### Vyhľadávanie podľa intervalu
+### Vyhľadávanie podľa intervalu
 Dáta v poliach, ktoré obsahujú číselné údaje je možné vyhľadávať aj zadaním intervalu.
 ```
 {
@@ -91,7 +91,17 @@ Dáta v poliach, ktoré obsahujú číselné údaje je možné vyhľadávať aj 
 * area_km2
 * elevation_m
 
-#### Zložené vyhľadávanie
+### Fulltextové vyhľadávanie
+Textové vyhľadávanie cez všetky polia
+```
+{
+  "term": "brno, matus vallo",
+  "field": "fulltext"
+}
+
+```
+
+### Zložené vyhľadávanie
 Všetky vyššie uvedené typy dopytov je možné navzájom kombinovať prostredníctvom skupín dopytov.
 ```
 {

@@ -111,6 +111,7 @@ class Indexer:
         doc = Document()
 
         for key in keys:
+            fulltextValue = ''
             if key not in self.includedFields:
                 continue
 
@@ -120,11 +121,14 @@ class Indexer:
                 continue
 
             doc.add(Field(key, value, self.basicField))
+            fulltextValue = fulltextValue + '|' + str(value)
 
             if filedType == 'IntPoint':
                 doc.add(IntPoint(key, int(value)))
 
             if filedType == 'DoublePoint':
                 doc.add(DoublePoint(key, value * 1.00))
+
+            doc.add(Field('fulltext', fulltextValue, self.basicField))
 
         self.writer.addDocument(doc)
