@@ -157,3 +157,13 @@ Skupiny je možné do seba rekurzívne vnárať:
 }
 
 ```
+
+### Filtrovanie polí na vrátenie
+Pokiaľ nechceme, aby výsledok dopytu obsahoval všetky polia, ktoré sú pre dané mesto uložené, môžeme špecifikovať len tie, ktoré sa majú vrátiť.
+```
+{
+  "term": "czech",
+  "field": "country",
+  "fetch": ["id", "name", "type"]
+}
+```
