@@ -4,12 +4,13 @@ from src.indexFields import fieldTypes
 class Printer:
 
     printConfig = {
-        'keys': fieldTypes.keys(),
-        'names': ('ID', 'Name', 'Type', 'Country name', 'Population', 'Density', 'Area', 'Elevation', 'Leader name'),
-        'paddings': (8, 25, 15, 25, 12, 10, 8, 9, 15)
+        'keys': list(fieldTypes.keys()),
+        'names': ['ID', 'Name', 'Type', 'Country name', 'Population', 'Density', 'Area', 'Elevation', 'Leader name'],
+        'paddings': [8,  25,     15,     25,             12,           10,       8,      9,           15]
     }
 
-    def __init__(self, searcher):
+    def __init__(self, searcher, fieldsToPrint):
+        self.processFieldsToPrint(fieldsToPrint)
         self.printOutputHeader()
         i = 1
         if len(searcher.get()) == 0:
@@ -19,6 +20,22 @@ class Printer:
                 self.printDoc(doc, i)
                 i += 1
         print('')
+
+
+    def processFieldsToPrint(self, fieldsToPrint):
+        if list(fieldsToPrint) == self.printConfig['keys']:
+            return
+
+        i = 0
+        removeCount = 0
+        fieldsToCheck = self.printConfig['keys'].copy()
+        for field in fieldsToCheck:
+            if field not in fieldsToPrint:
+                self.printConfig['keys'].pop(i - removeCount)
+                self.printConfig['names'].pop(i - removeCount)
+                self.printConfig['paddings'].pop(i - removeCount)
+                removeCount += 1
+            i += 1
 
 
     def printOutputHeader(self):

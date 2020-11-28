@@ -4,5 +4,5 @@
   "queryFile": "./query.json",
   "outputFile": "./result.json",
   "printOutput": true,
-  "maxHits": 1000
+  "maxHits": 100
 }

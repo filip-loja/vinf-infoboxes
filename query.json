@@ -1,4 +1,5 @@
 {
-  "term": "brno, matus vallo",
-  "field": "fulltext"
+  "term": "czech",
+  "field": "country",
+  "fetch": ["id", "name", "type", "area_km2"]
 }

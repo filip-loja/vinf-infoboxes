@@ -16,6 +16,7 @@ class Query:
     analyzer = None
 
     fieldTypes = fieldTypes
+    fieldsToFetch = None
 
 
     def __init__(self, queryFile):
@@ -23,11 +24,26 @@ class Query:
 
         with open(queryFile) as file:
             self.rawQuery = json.load(file)
+        self.computeFieldsToFetch()
         self.parse()
 
 
     def get(self):
         return self.parsedQuery
+
+
+    def computeFieldsToFetch(self):
+        fields = self.fieldTypes.keys()
+        if 'fetch' in self.rawQuery:
+            self.fieldsToFetch = []
+            for fetchItem in self.rawQuery['fetch']:
+                if fetchItem in fields:
+                    self.fieldsToFetch.append(fetchItem)
+            if len(self.fieldsToFetch) == 0:
+                self.fieldsToFetch = fields
+        else:
+            self.fieldsToFetch = fields
+        self.rawQuery.pop('fetch', None)
 
 
     def parse(self):

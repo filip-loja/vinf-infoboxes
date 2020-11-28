@@ -6,9 +6,9 @@
 
 ## Ovládanie
 ```
-python store <module> [<config-file>]
+python store <action> [<config-file>]
 ```
-* `<module>` - názov modulu, ktorý sa má vykonať
+* `<action>` - názov akcie, ktorá sa má vykonať
     * `index` - spustí sa indexovanie vyparsovaných dát
     * `search` - spustí sa vyhľadávanie nad zaindexovanými dátami
 * `<config-file>` - cesta ku konfiguračnému JSON súboru (ak nie je zadaná, použije sa súbor `/config.json`)

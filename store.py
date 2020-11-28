@@ -16,7 +16,7 @@ elif config['moduleName'] == 'search':
     query = Query(config['queryFile'])
     searcher = Searcher(config['indexPath'], query, config['maxHits'])
     if config['printOutput']:
-        Printer(searcher)
+        Printer(searcher, query.fieldsToFetch)
     if config['outputFile'] is not None:
         with open(config['outputFile'], 'w+') as outputFile:
             json.dump(searcher.get(), outputFile, indent=2)
