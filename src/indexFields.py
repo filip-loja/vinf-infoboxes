@@ -8,5 +8,7 @@ fieldTypes = {
     'population_density': 'DoublePoint',
     'area_km2': 'DoublePoint',
     'elevation_m': 'DoublePoint',
-    'leader': 'TextField'
+    'leader': 'TextField',
+    'strictness': 'IntPoint',
+    'completeness': 'IntPoint'
 }

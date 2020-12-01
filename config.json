@@ -1,5 +1,5 @@
 {
-  "sourceFile": "./source.txt",
+  "sourceFile": "./source-new.txt",
   "indexPath": "./index/",
   "queryFile": "./query.json",
   "outputFile": "./result.json",

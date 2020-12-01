@@ -91,7 +91,7 @@ class Query:
         isPrefix = rule.get('prefix', False)
         isFuzzy = rule.get('fuzzy', False)
 
-        isInt = field in ('id', 'population') and isinstance(term, list)
+        isInt = field in ('id', 'population', 'strictness', 'completeness') and isinstance(term, list)
         isDouble = field in ('population_density', 'area_km2', 'elevation_m') and isinstance(term, list)
 
         if isInt:

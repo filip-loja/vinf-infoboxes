@@ -6,7 +6,7 @@
       "field": "country"
     },
     {
-      "term": [80, 100],
+      "term": [80, "-"],
       "field": "completeness"
     }
   ]

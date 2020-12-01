@@ -5,8 +5,8 @@ class Printer:
 
     printConfig = {
         'keys': list(fieldTypes.keys()),
-        'names': ['ID', 'Name', 'Type', 'Country name', 'Population', 'Density', 'Area', 'Elevation', 'Leader name'],
-        'paddings': [8,  25,     15,     25,             12,           10,       8,      9,           15]
+        'names': ['ID', 'Name', 'Type', 'Country name', 'Population', 'Density', 'Area', 'Elevation', 'Leader name', 'Strict.', 'Complet.'],
+        'paddings': [8,  25,     15,     25,             12,           10,       8,      9,           15,             8,        8]
     }
 
     def __init__(self, searcher, fieldsToPrint):
