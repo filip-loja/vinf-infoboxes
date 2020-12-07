@@ -2,11 +2,15 @@
   "group": "AND",
   "conditions": [
     {
-      "term": "cz",
-      "field": "country"
+      "term": "lincoln",
+      "field": "fulltext"
     },
     {
-      "term": [80, 100],
+      "term": 1,
+      "field": "strictness"
+    },
+    {
+      "term": ["-", 100],
       "field": "completeness"
     }
   ]

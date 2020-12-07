@@ -159,7 +159,7 @@ Skupiny je možné do seba rekurzívne vnárať:
 ```
 
 ### Filtrovanie polí na vrátenie
-Pokiaľ nechceme, aby výsledok dopytu obsahoval všetky polia, ktoré sú pre dané mesto uložené, môžeme špecifikovať len tie, ktoré sa majú vrátiť.
+Pokiaľ nechceme, aby výsledok dopytu obsahoval všetky polia, ktoré sú pre dané mesto uložené, môžeme špecifikovať len tie, ktoré sa majú vrátiť. Z indexu sa teraz načítajú len zadané polia a nie všetky, ako by tomu bolo v prípade, že by sa atribút `fetch` nepoužil.
 ```
 {
   "term": "czech",
